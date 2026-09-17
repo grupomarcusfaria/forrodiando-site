@@ -72,7 +72,15 @@ footer .miolo{display:flex;justify-content:space-between;align-items:flex-end;ga
 .fade{animation:entra 700ms cubic-bezier(.22,1,.36,1) both}
 .fade:nth-child(2){animation-delay:80ms}.fade:nth-child(3){animation-delay:160ms}.fade:nth-child(4){animation-delay:240ms}
 @keyframes entra{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
-@media (prefers-reduced-motion:reduce){.fade{animation:none}.marca-banda,.marca-mwm{animation:none}.marca-mwm{display:none}}
+/* Movimento reduzido: as entradas param, mas a troca do topo continua — como crossfade puro, sem deslize.
+   (No Windows, "Efeitos de animação" desligado em Acessibilidade vira prefers-reduced-motion no Chrome.) */
+@media (prefers-reduced-motion:reduce){
+  .fade{animation:none}
+  .marca-banda{animation-name:vez-a-suave}
+  .marca-mwm{animation-name:vez-b-suave}
+}
+@keyframes vez-a-suave{0%,42%{opacity:1}47%,93%{opacity:0}100%{opacity:1}}
+@keyframes vez-b-suave{0%,45%{opacity:0}50%,92%{opacity:1}97%,100%{opacity:0}}
 </style>
 </head>
 <body>
