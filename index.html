@@ -34,6 +34,24 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font-text
 a{color:inherit;text-decoration:none}
 :focus-visible{outline:2px solid var(--violeta);outline-offset:3px;border-radius:2px}
 header{padding:24px var(--gutter);border-bottom:1px solid var(--line);font-weight:600;letter-spacing:-.01em}
+/* Marca do topo: "Forrodiando" e a marca MWM se revezam no mesmo lugar. Quem sai desliza para a esquerda e esmaece;
+   quem entra chega da direita em fade-in, sobrepondo a saída. Ciclo de 10s, só CSS. */
+.troca{position:relative;height:24px;width:132px}
+.troca>*{position:absolute;left:0;top:0;height:24px;display:flex;align-items:center;will-change:transform,opacity}
+.marca-banda{line-height:1;animation:vez-a 10s ease-in-out infinite}
+.marca-mwm{width:auto;height:24px;fill:currentColor;color:var(--text);opacity:0;animation:vez-b 10s ease-in-out infinite}
+@keyframes vez-a{
+  0%,42%{opacity:1;transform:translateX(0)}
+  47%{opacity:0;transform:translateX(-14px)}
+  47.01%,93%{opacity:0;transform:translateX(14px)}
+  100%{opacity:1;transform:translateX(0)}
+}
+@keyframes vez-b{
+  0%,45%{opacity:0;transform:translateX(14px)}
+  50%,92%{opacity:1;transform:translateX(0)}
+  97%{opacity:0;transform:translateX(-14px)}
+  97.01%,100%{opacity:0;transform:translateX(14px)}
+}
 main{flex:1;display:flex;flex-direction:column;justify-content:center;padding:64px var(--gutter)}
 .rotulo{display:block;font-size:.75rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--lima);margin-bottom:24px}
 h1{margin:0;font-family:var(--font-display);font-weight:700;font-size:clamp(3rem,10vw,7rem);line-height:.95;letter-spacing:-.02em}
@@ -54,11 +72,11 @@ footer .miolo{display:flex;justify-content:space-between;align-items:flex-end;ga
 .fade{animation:entra 700ms cubic-bezier(.22,1,.36,1) both}
 .fade:nth-child(2){animation-delay:80ms}.fade:nth-child(3){animation-delay:160ms}.fade:nth-child(4){animation-delay:240ms}
 @keyframes entra{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
-@media (prefers-reduced-motion:reduce){.fade{animation:none}}
+@media (prefers-reduced-motion:reduce){.fade{animation:none}.marca-banda,.marca-mwm{animation:none}.marca-mwm{display:none}}
 </style>
 </head>
 <body>
-<header>Forrodiando</header>
+<header><div class="troca" role="img" aria-label="Forrodiando"><span class="marca-banda" aria-hidden="true">Forrodiando</span><svg class="marca-mwm" viewBox="0 0 1132.91 212.68" aria-hidden="true"><path d="M35.38,177.36c-3.97,3.76-10.36-.36-8.51-5.5.04-.1.07-.2.11-.3,1.21-3.97,2.78-7.94,4.46-11.93.07-.16.14-.31.22-.47l17.6-32.72c1.37-2.54.41-5.7-2.12-7.07l-2.94-1.58c-3.15-1.69-6.37-3.24-9.38-4.48-10.21-4.3-20.19-6.52-29.74-6.75-5.4-.13-7.04-7.45-2.2-9.86.18-.09.37-.18.55-.27,3.86-1.82,7.68-3.58,11.74-5.11.13-.05.26-.09.4-.13l40.09-12.04.45-.13-.1-.52-2.41-7.8c-1.01-3.38-2.14-6.72-3.43-9.77-4.2-10.23-9.69-18.85-16.26-25.77-3.73-3.93.31-10.26,5.44-8.52.19.07.39.13.58.2,4.02,1.33,8.03,2.83,12,4.59.14.06.27.13.41.2l32.6,17.54c2.54,1.37,5.7.41,7.07-2.12l1.62-3.02c1.69-3.15,3.27-6.26,4.55-9.34,4.27-10.15,6.5-20.09,6.76-29.59.15-5.39,7.45-7.02,9.86-2.2.08.15.15.31.23.46,1.79,3.75,3.57,7.68,5.11,11.74.05.13.09.27.13.4l11.97,40.05.21.49.56-.17,7.88-2.37c3.38-1.01,6.72-2.14,9.77-3.43,10.16-4.15,18.75-9.6,25.64-16.14,3.94-3.74,10.3.34,8.51,5.47-.05.15-.11.31-.16.46-1.35,3.89-2.85,7.89-4.53,11.88-.07.17-.15.33-.23.49l-17.56,32.63c-1.37,2.54-.41,5.7,2.12,7.07l3.09,1.66c3.15,1.69,6.23,3.16,9.38,4.48,10.1,4.25,19.99,6.48,29.45,6.75,5.41.16,7.03,7.5,2.16,9.88-.12.06-.25.12-.37.18-3.7,1.89-7.65,3.57-11.67,5.2-.16.06-.32.12-.48.17l-40.05,12.03-.56.17.21.49,2.37,7.88c1.01,3.38,2.18,6.65,3.35,9.73.11.15.21.3.25.42,4.07,9.93,9.41,18.33,15.8,25.12,3.72,3.95-.34,10.3-5.47,8.51-.09-.03-.17-.06-.26-.09-3.99-1.22-7.89-2.75-11.85-4.51-.13-.06-.27-.12-.39-.19l-32.75-17.62c-2.54-1.37-5.7-.41-7.07,2.12l-1.66,3.09c-1.69,3.15-3.27,6.26-4.48,9.38-4.28,10.16-6.5,20.1-6.75,29.61-.14,5.43-7.52,7.04-9.89,2.15-.07-.15-.14-.3-.21-.45-1.93-3.81-3.57-7.65-5.2-11.67-.06-.16-.12-.32-.17-.48l-12.03-40.05-.17-.56-.56.17-7.77,2.33c-3.3,1.05-6.57,2.22-9.7,3.46-.11.03-.26.14-.38.17-10.03,4.1-18.47,9.48-25.25,15.91Z"/><path d="M271.06,6.88h19.95l33.98,77.18L358.91,6.88h19.95v95.28h-14.29V27.27l-32.84,74.89h-14.36l-32.84-74.77v74.77h-13.47V6.88Z"/><path d="M388.88,102.16L429.54,6.37h14.29l40.65,95.79h-15.69l-11.12-27.12h-42.94l-11.12,27.12h-14.74ZM452.34,61.95l-16.13-39.26-16.07,39.26h32.21Z"/><path d="M494.38,102.16V6.88h49.23c15.82,0,26.55,10.61,26.55,26.43,0,13.85-8.26,23.76-21.09,25.98l25.54,42.88h-16.77l-24.39-42.43h-24.71v42.43h-14.36ZM555.36,33.3c0-8.19-5.21-13.34-13.34-13.34h-33.29v26.68h33.29c8.13,0,13.34-5.21,13.34-13.34Z"/><path d="M628.66,19.07c-20.01,0-34.37,14.8-34.37,35.45s14.36,35.45,34.37,35.45c13.79,0,24.14-6.1,26.74-15.94h16.2c-3.68,17.72-20.9,29.41-42.94,29.41-27.95,0-49.29-21.22-49.29-48.91s21.34-48.91,49.29-48.91c22.04,0,39.26,11.69,42.94,29.41h-16.2c-2.6-9.85-12.96-15.94-26.74-15.94Z"/><path d="M826.32,54.52c0,27.7-21.34,48.91-49.36,48.91s-49.29-21.22-49.29-48.91,21.34-48.91,49.29-48.91,49.36,21.22,49.36,48.91ZM742.6,54.52c0,20.71,14.42,35.45,34.37,35.45s34.43-14.74,34.43-35.45-14.48-35.45-34.43-35.45-34.37,14.74-34.37,35.45Z"/><path d="M730.74,102.89h-13.15l-39.7-95.91h13.21l39.63,95.91Z"/><path d="M280.02,116.12l19.44,74.77,25.6-74.77h14.42l25.41,74.26,19.31-74.26h13.78l-26.42,95.28h-14.23l-25.85-75.78-25.85,75.78h-14.23l-26.49-95.28h15.12Z"/><path d="M473.81,116.12v13.09h-50.5v26.68h34.62v13.09h-34.62v29.35h53.68v13.09h-68.03v-95.28h64.86Z"/><path d="M504.55,116.12v82.2h47.71v13.09h-62.06v-95.28h14.36Z"/><path d="M578.16,116.12v82.2h47.71v13.09h-62.06v-95.28h14.36Z"/><path d="M651.78,116.12v95.28h-14.36v-95.28h14.36Z"/><path d="M668.8,211.41v-95.28h15.18l55.84,69.43v-69.43h13.47v95.28h-11.75l-59.27-73.69v73.69h-13.47Z"/><path d="M816.28,128.32c-20.01,0-34.37,14.8-34.37,35.45,0,21.66,14.8,35.45,38.05,35.45,10.54,0,19.06-2.54,26.11-7.75v-16.01h-26.74v-13.02h40.21v35.64c-9.59,9.66-23.5,14.61-40.53,14.61-30.68,0-52.03-20.14-52.03-48.91s21.34-48.91,49.29-48.91c22.04,0,39.26,11.69,42.94,29.41h-16.2c-2.61-9.78-12.9-15.94-26.74-15.94Z"/><path d="M860.1,116.12h74.7v13.09h-30.17v82.2h-14.36v-82.2h-30.17v-13.09Z"/><path d="M1034.72,163.76c0,27.7-21.34,48.91-49.36,48.91s-49.29-21.22-49.29-48.91,21.34-48.91,49.29-48.91,49.36,21.22,49.36,48.91ZM950.99,163.76c0,20.71,14.42,35.45,34.37,35.45s34.43-14.74,34.43-35.45-14.48-35.45-34.43-35.45-34.37,14.74-34.37,35.45Z"/><path d="M1048.42,211.41v-95.28h15.18l55.84,69.43v-69.43h13.47v95.28h-11.75l-59.27-73.69v73.69h-13.47Z"/></svg></div></header>
 <main>
   <span class="rotulo fade">Em breve</span>
   <h1 class="fade">Forrodiando</h1>
