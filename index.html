@@ -53,14 +53,16 @@ header{padding:24px var(--gutter);border-bottom:1px solid var(--line);font-weigh
   97%{opacity:0;transform:translateX(-14px)}
   97.01%,100%{opacity:0;transform:translateX(14px)}
 }
-main{flex:1;display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,44%);align-items:center;gap:clamp(24px,5vw,72px);padding:64px var(--gutter)}
-.texto{min-width:0}
+/* O main não tem padding embaixo: a foto assenta na hairline do rodapé; o texto guarda o próprio respiro. */
+main{flex:1;display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,44%);align-items:center;gap:clamp(24px,5vw,72px);padding:64px var(--gutter) 0}
+.texto{min-width:0;padding-bottom:64px}
 /* A foto já vem com o fundo pintado no grafite da página; o degradê só amacia a borda esquerda do recorte. */
-.foto{position:relative;min-width:0}
+.foto{position:relative;min-width:0;align-self:end}
 .foto img{display:block;width:100%;height:auto;max-height:78svh;object-fit:contain;object-position:right bottom}
 .foto::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--bg) 0,transparent 18%)}
 @media (max-width:759px){
-  main{grid-template-columns:1fr;gap:40px;padding-block:40px}
+  main{grid-template-columns:1fr;gap:40px;padding-block:40px 0}
+  .texto{padding-bottom:0}
   .foto img{max-height:none;object-position:center}
   .foto::after{background:none}
 }
