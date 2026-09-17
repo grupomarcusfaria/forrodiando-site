@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Forrodiando — em breve</title>
+<meta name="description" content="Forrodiando, banda de forró de Dourados-MS. Site oficial em construção: agenda de shows, portfólio e contato.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Forrodiando">
+<meta property="og:title" content="Forrodiando — em breve">
+<meta property="og:description" content="Banda de forró de Dourados-MS. Site oficial em construção.">
+<meta property="og:locale" content="pt_BR">
+<!--
+  Verificação de domínio no Meta (Business Manager → Segurança da marca → Domínios):
+  cole a tag que o Meta fornecer na linha abaixo, ou use o registro TXT no DNS da GoDaddy.
+  <meta name="facebook-domain-verification" content="COLE-O-CODIGO-AQUI">
+-->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23171C1A'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='Arial,Helvetica,sans-serif' font-weight='700' font-size='34' fill='%23FAFAFA'%3EF%3C/text%3E%3C/svg%3E">
+<style>
+/* Fontes ao lado do arquivo: a página não depende de nenhum serviço externo. */
+@font-face{font-family:"Anthropic Sans";font-weight:400;font-style:normal;font-display:swap;src:url("fonts/text-regular.otf") format("opentype")}
+@font-face{font-family:"Anthropic Sans";font-weight:500;font-style:normal;font-display:swap;src:url("fonts/text-medium.otf") format("opentype")}
+@font-face{font-family:"Anthropic Sans Display";font-weight:700;font-style:normal;font-display:swap;src:url("fonts/display-bold.otf") format("opentype")}
+:root{
+  color-scheme:dark;
+  --bg:#171C1A;--text:#FAFAFA;--text-2:#A8B2AD;--text-3:#6E7873;--line:#2C3431;--line-2:#3A423E;--lima:#C6F135;--violeta:#8E71FF;
+  --font-text:"Anthropic Sans",-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --font-display:"Anthropic Sans Display","Anthropic Sans",-apple-system,"Segoe UI",Roboto,sans-serif;
+  --gutter:clamp(20px,6vw,96px);
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font-text);font-size:1rem;line-height:1.55;-webkit-font-smoothing:antialiased;display:flex;flex-direction:column;min-height:100svh}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--violeta);outline-offset:3px;border-radius:2px}
+header{padding:24px var(--gutter);border-bottom:1px solid var(--line);font-weight:600;letter-spacing:-.01em}
+main{flex:1;display:flex;flex-direction:column;justify-content:center;padding:64px var(--gutter)}
+.rotulo{display:block;font-size:.75rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--lima);margin-bottom:24px}
+h1{margin:0;font-family:var(--font-display);font-weight:700;font-size:clamp(3rem,10vw,7rem);line-height:.95;letter-spacing:-.02em}
+.linha{margin:24px 0 0;font-size:1.125rem;color:var(--text-2);max-width:52ch}
+.links{display:flex;gap:32px;flex-wrap:wrap;margin-top:40px;padding-top:24px;border-top:1px solid var(--line);max-width:52ch}
+.links a{font-weight:500;color:var(--text-2);border-bottom:1px solid var(--line-2);transition:color 150ms ease-out,border-color 150ms ease-out}
+.links a:hover{color:var(--text);border-color:var(--text)}
+footer{padding:32px var(--gutter);border-top:1px solid var(--line);font-size:.875rem;color:var(--text-2)}
+footer p{margin:0}
+footer p+p{margin-top:8px}
+footer .nome{color:var(--text);font-weight:600}
+footer a{border-bottom:1px solid var(--line-2)}
+.fade{animation:entra 700ms cubic-bezier(.22,1,.36,1) both}
+.fade:nth-child(2){animation-delay:80ms}.fade:nth-child(3){animation-delay:160ms}.fade:nth-child(4){animation-delay:240ms}
+@keyframes entra{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.fade{animation:none}}
+</style>
+</head>
+<body>
+<header>Forrodiando</header>
+<main>
+  <span class="rotulo fade">Em breve</span>
+  <h1 class="fade">Forrodiando</h1>
+  <p class="linha fade">Banda de forró de Dourados, Mato Grosso do Sul. O site oficial está em construção e vai reunir agenda de shows, portfólio e contato.</p>
+  <nav class="links fade" aria-label="Redes">
+    <a href="https://www.instagram.com/forrodiando" rel="noopener">Instagram @forrodiando</a>
+    <a href="https://www.facebook.com/profile.php?id=110249540449749" rel="noopener">Facebook</a>
+  </nav>
+</main>
+<footer>
+  <!-- Dados legais para a verificação de empresa no Meta: nome empresarial, CNPJ, endereço, telefone e e-mail, iguais aos documentos. Preencher e republicar. -->
+  <p><span class="nome">Forrodiando</span> · Dourados-MS</p>
+  <p>© 2026 Forrodiando. Todos os direitos reservados.</p>
+</footer>
+</body>
+</html>
