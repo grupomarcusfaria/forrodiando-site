@@ -59,14 +59,15 @@ main{flex:1;display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,44%);a
 /* Atrás do recorte da banda, o isologo em papel: a estrela ocupa a altura da coluna e a banda nasce da linha do rodapé. */
 .foto{position:relative;min-width:0;align-self:stretch;display:flex;align-items:flex-end;justify-content:center;min-height:min(78svh,720px)}
 .foto .estrela{position:absolute;left:50%;top:47%;width:min(128%,calc(100% + 12vw),98svh);aspect-ratio:1;transform:translate(-50%,-50%);color:var(--text);fill:currentColor;pointer-events:none}
-.foto img{position:relative;display:block;width:100%;max-width:640px;height:auto;max-height:88%;object-fit:contain;object-position:center bottom}
+/* A banda cresce pela altura da coluna (a largura acompanha); pode passar um pouco da coluna — o main corta o excesso na margem. */
+.foto img{position:relative;display:block;height:84%;width:auto;max-width:118%;object-fit:contain;object-position:center bottom}
 @media (max-width:759px){
   main{grid-template-columns:1fr;gap:40px;padding-block:40px 0}
   .texto{padding-bottom:0}
   /* no celular a estrela cabe na própria coluna, com respiro acima para não encostar nos links */
   .foto{min-height:0;margin-top:72px}
   .foto .estrela{width:96%;top:56%}
-  .foto img{max-height:none;max-width:88%}
+  .foto img{height:auto;width:88%;max-width:88%}
 }
 .rotulo{display:block;font-size:.75rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--lima);margin-bottom:24px}
 h1{margin:0;font-family:var(--font-display);font-weight:700;font-size:clamp(3rem,10vw,7rem);line-height:.95;letter-spacing:-.02em}
